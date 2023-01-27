@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box ;
+}
+
+
+
+
+#wrapper{
+    /*  pure viewport ke barabar height lelega(height of browser)bcoz sara code wrapper me likhenge */
+
+    height:100vh; 
+
+/* hamari website page left right move ni karvana(scroll hona chaieyey sirf up and down) */
+  overflow-x: hidden;
+  
+  /* for up and down scroll */
+  overflow-y: auto;
+
+/* for 3d space in page use 3d transforms(ek image ko pass rakhna hai ek ko door */
+perspective: 10px;
+
+}
+
+.container{
+/* yaha 2 images apas me overlap hori hai yani absolute positiong use hogi
+absolute positioning ke liye nearest neighbour ancestor non static hona chaiye 
+isliye positioning ko static ke alava kuch bhi set karvado
+ */
+position: relative;
+height: 100%; 
+width: 100%;
+
+/* heading ko centre me lana tha flexbox use karenge */
+display: flex;
+justify-content: center;
+align-items: center;
+
+/* 3d jo bhi changes karenge unko explicitly yha likhke preserve karvana padhta hai taki vo hate na */
+transform-style: preserve-3d;
+
+z-index: -1;  
+ /* ye krna jaruri hai verna hamara section ke ander ko paragraph content hai vo image ke peeche chala jata hai */
+
+
+}
+
+/* ab background and foreground image ko overlap karva denge
+div me dono ko class banaya tha isiliye . se call karenge */
+.background, .foreground {
+    position:absolute;
+    height:100%;
+    width: 100%;
+
+    /* ab image ko enhance karenge acc to viewport */
+    object-fit: cover;
+
+    /* text agar hidden hojaye image overlap hone ke bad tb z index ki help lenge */
+    z-index: -1;
+}
+
+/* main kaam ab 3d effect dalenge foreground tez move karega aur background slow */
+.background{
+    transform: translateZ(-40px) scale(5);
+    /* z axis me translate property use karenge to put 3d effect
+    scale isiliye kia bcoz jo cheez humse jitti dooor hogi vo utti choti dikhti hai so scale krke page ke barabar kia
+*/
+} 
+.foreground{
+    transform: translateZ(-20px) scale(3);
+}
+
+/* now last step adventure vale text ke size ko increase karenge as per rqst */
+
+   h1{
+    position: absolute;
+    top: 5rem;
+    font-size: 10rem;
+    letter-spacing: 4px;
+    color: rgb(83, 178, 213);
+    text-shadow: 0 0 15px rgba(0,0,0,0.3);
+    
+   }
+   
+
+   section{
+    background-color: rgb(45,45,45);
+    color: white;
+    padding:5rem 0;
+    /* is sb se hamare text me color aagya peeche bg me black color aagya with padding */
+   }
+
+   .heading2{
+    font-size:5rem;
+    padding:0 10rem;
+    color: antiquewhite;
+   }
+
+   .text{
+    font-size: 2rem;
+    padding: 5 10rem;
+    margin: 3rem 0;
+   }
+
+   .bg{
+    position: relative;
+    width: 100%;
+    background-attachment: fixed; 
+    /* image fix krdi (iske uper text move hoga acc to project) */
+   
+    /* ab background ko centre pe le aayenge aur size fit krenge */
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    
+   }
+
+   .heading{
+    position:absolute;
+    background-color: white;
+    color: black;
+    font-size: 3.5rem;
+    font-weight: 600 ;
+    padding: 0.5rem 2.5rem;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%) translateX(-50%) ;
+   }
+
+/* ab sare sections me one my one bg image add karenge */
+/* class jo banai thi html me vo call hori hai */
+.bg1{
+    background-image: url(sport-1.jpg);
+
+}
+.bg2{
+    background-image: url(sport-2.jpg);
+
+}
+.bg3{
+    background-image: url(sport-3.jpg);
+
+}
+
